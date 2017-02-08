@@ -19,8 +19,6 @@ while url:
 		userIDs.append(user['id'])
 	url = data['next_page']
 
-len(userIDs)
-
 badUsers = []
 
 for userID in userIDs[:1]:
