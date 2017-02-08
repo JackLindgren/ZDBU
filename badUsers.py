@@ -36,4 +36,8 @@ for userID in userIDs[:1]:
 				if identity['deliverable_state'] != 'deliverable':
 					badUsers.append({identity['value]']: int(identity['undeliverable_count'])})
 
-# write out the bad users and their bounce counts to a CSV
+f = open('badUsers.csv', 'w')
+for entry in badUsers.keys():
+	f.write("{0},{1}\n".format(entry, badUsers[entry]))
+
+f.close()
