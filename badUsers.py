@@ -19,7 +19,7 @@ while url:
 		userIDs.append(user['id'])
 	url = data['next_page']
 
-badUsers = []
+badUsers = {}
 
 for userID in userIDs[:1]:
 	url = "https://{0}.zendesk.com/api/v2/users/{1}/identities.json".format(org, userID)
@@ -32,7 +32,8 @@ for userID in userIDs[:1]:
 			data = response.json()
 			for identity in data['identities']:
 				if identity['deliverable_state'] != 'deliverable':
-					badUsers.append({identity['value]']: int(identity['undeliverable_count'])})
+					badUsers[identity['value']] = int(identity['undeliverable_count'])
+					# badUsers.append({identity['value]']: int(identity['undeliverable_count'])})
 
 f = open('badUsers.csv', 'w')
 for entry in badUsers.keys():
